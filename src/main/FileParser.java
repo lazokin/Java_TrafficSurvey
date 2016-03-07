@@ -33,21 +33,9 @@ public class FileParser {
 	private RawEvent parseLine(String line) throws Exception {
 		String laneStr = line.substring(0, 1);
 		String timeStr = line.substring(1);
-		
-		RawEvent.LaneType laneType;
 		char lane = laneStr.charAt(0);
-		switch (lane) {
-		case 'A':
-			laneType = RawEvent.LaneType.A;
-			break;
-		case 'B':
-			laneType = RawEvent.LaneType.B;
-			break;
-		default:
-			throw new Exception("Uknown lane type : " + lane);
-		}
 		int timestamp = Integer.parseInt(timeStr);
-		return RawEvent.create(laneType, timestamp);
+		return RawEvent.create(lane, timestamp);
 	}
 
 

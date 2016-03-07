@@ -35,9 +35,9 @@ public class FileParserTest {
 	@After
 	public void after() {
 		try {
-			file.delete();
-			fw.close();
 			fr.close();
+			fw.close();
+			file.delete();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -56,8 +56,8 @@ public class FileParserTest {
 		List<RawEvent> events = parser.parse();
 		assertEquals(1, events.size());
 		RawEvent event = events.get(0);
-		assertEquals(event.getLaneType(), RawEvent.LaneType.A);
-		assertEquals(event.getTimestamp(), 12345);
+		assertEquals(event.getLane(), 'A');
+		assertEquals(event.getTime(), 12345);
 	}
 	
 	@Test
@@ -68,11 +68,11 @@ public class FileParserTest {
 		List<RawEvent> events = parser.parse();
 		assertEquals(2, events.size());
 		RawEvent e1 = events.get(0);
-		assertEquals(e1.getLaneType(), RawEvent.LaneType.B);
-		assertEquals(e1.getTimestamp(), 12345);
+		assertEquals(e1.getLane(), 'B');
+		assertEquals(e1.getTime(), 12345);
 		RawEvent e2 = events.get(1);
-		assertEquals(e2.getLaneType(), RawEvent.LaneType.B);
-		assertEquals(e2.getTimestamp(), 98765);
+		assertEquals(e2.getLane(), 'B');
+		assertEquals(e2.getTime(), 98765);
 	}
 
 }

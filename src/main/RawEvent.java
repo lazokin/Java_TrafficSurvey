@@ -2,28 +2,32 @@ package main;
 
 public class RawEvent {
 	
-	public enum LaneType {
-		A, B
+	private char lane; // char representing traffic lane
+	private int time; // milliseconds
+	
+	// static factory method
+	public static RawEvent create(char lane, int time) {
+		return new RawEvent(lane, time);
 	}
 	
-	private LaneType laneType;
-	private int timestamp;
-	
-	private RawEvent(LaneType laneType, int timestamp) {
-		this.laneType = laneType;
-		this.timestamp = timestamp;
+	// constructor
+	private RawEvent(char lane, int time) {
+		this.lane = lane;
+		this.time = time;
 	}
 
-	public LaneType getLaneType() {
-		return laneType;
+	// getters
+	public char getLane() {
+		return lane;
 	}
 
-	public int getTimestamp() {
-		return timestamp;
+	public int getTime() {
+		return time;
 	}
 	
-	public static RawEvent create(LaneType laneType, int timestamp) {
-		return new RawEvent(laneType, timestamp);
+	@Override
+	public String toString() {
+		return lane + " | " + time;
 	}
 	
 }

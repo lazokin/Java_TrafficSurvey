@@ -2,33 +2,44 @@ package main;
 
 public class VehicleEvent {
 	
-	private char lane;
-	private long time;
-	private int speed;
+	private char lane; // char representing traffic lane
+	private int day; // index starting from zero
+	private int time; // milliseconds
+	private double speed; // meters/second
 	
-	public VehicleEvent(char lane, long time, int speed) {
+	// static factory method
+	public static VehicleEvent create(char lane, int day, int time, double speed) {
+		return new VehicleEvent(lane, day, time, speed);
+	}
+	
+	// constructor
+	private VehicleEvent(char lane, int day, int time, double speed) {
 		this.lane = lane;
+		this.day = day;
 		this.time = time;
 		this.speed = speed;
 	}
 
+	// getters
 	public char getLane() {
 		return lane;
 	}
+	
+	public int getDay() {
+		return day;
+	}
 
-	public long getTime() {
+	public int getTime() {
 		return time;
 	}
 
-	public int getSpeed() {
+	public double getSpeed() {
 		return speed;
 	}
 
 	@Override
 	public String toString() {
-		return lane + " | " + time + " | " + speed;
+		return lane + " | " + day + " | " + time + " | " + speed;
 	}
-	
-	
-	
+
 }
